@@ -14,7 +14,7 @@ add_executable(print_ip_cli main.cpp)
 add_library(print_ip lib.cpp)
 
 set_target_properties(print_ip_cli print_ip PROPERTIES
-    CXX_STANDARD 14
+    CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
 )
 
@@ -31,7 +31,7 @@ if(WITH_BOOST_TEST)
     add_executable(test_version test_version.cpp)
 
     set_target_properties(test_version PROPERTIES
-        CXX_STANDARD 14
+        CXX_STANDARD 17
         CXX_STANDARD_REQUIRED ON
     )
 
