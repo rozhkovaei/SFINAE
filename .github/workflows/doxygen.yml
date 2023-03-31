@@ -6,10 +6,19 @@ on:
   push:
     branches: [ main ]
 
+permissions:
+  pages: write
+  deployments: write
+  id-token: write
+  
 jobs:
   build-documentation:
     runs-on: ubuntu-latest
 
+    environment:
+     name: github-pages
+     url: ${{ steps.deployment.outputs.page_url }}
+     
     steps:
     - uses: actions/checkout@v2
     
@@ -24,6 +33,7 @@ jobs:
     - name: GH Pages Deployment
       uses: peaceiris/actions-gh-pages@v3
       with:
+        id: deployment
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./doc/html/
         enable_jekyll: false
