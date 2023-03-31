@@ -5,6 +5,11 @@
 #include <tuple>
 #include <type_traits>
 
+/**
+ * Template function to print ip address.
+ * @brief Outputs each element of the container as is separated with dots.
+ * @param container to print.
+*/
 template <
     template < typename, typename > typename Container,
     typename Type,
@@ -29,12 +34,22 @@ using IsString = std::enable_if_t< std::is_same_v< T, std::string >, bool >;
 template< typename T >
 using IsInteger = std::enable_if_t< std::is_integral_v< T > && !std::is_same_v< T, bool >, bool >;
 
+/**
+ * Template function to print ip address.
+ * @brief Outputs string as is.
+ * @param value to print.
+*/
 template < typename T, IsString< T > = true >
 void print_ip( T&& value )
 {
     std::cout << value << std::endl;
 }
 
+/**
+ * Template function to print ip address.
+ * @brief Outputs each byte of the value separated with dots.
+ * @param value to print.
+*/
 template < typename T, IsInteger< T > = true >
 void print_ip( T&& value )
 {
@@ -71,6 +86,11 @@ void print_tuple( const Type& tuple, std::index_sequence< Is... >)
     std::cout << std::endl;
 }
 
+/**
+ * Template function to print ip address.
+ * @brief Outputs each tuple element as is separated with dots.
+ * @param tuple_value to print.
+*/
 template <
     template < typename ... > typename Tuple,
     typename ...Type,
