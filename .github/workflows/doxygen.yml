@@ -30,17 +30,14 @@ jobs:
           doxyfile-path: ./Doxyfile
           working-directory: .
     
-    # Deploy the HTML documentation to GitHub Pages
-    - name: GH Pages Deployment
-      uses: peaceiris/actions-gh-pages@v3
+    - name: Upload Docs
+      uses: actions/upload-pages-artifact@v1
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./doc/html/
-        enable_jekyll: false
-        allow_empty_commit: false
-        force_orphan: true
-        publish_branch: gh-pages
+          path: Documentation\html
         
-    - name: Deploy To GitHub io
+    - name: Setup Pages
+      uses: actions/configure-pages@v2
+        
+    - name: Deploy To GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v1
